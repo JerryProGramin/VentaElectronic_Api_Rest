@@ -10,10 +10,10 @@ class Suppliers
         private int $id,
         private string $name,
         private string $contactInfo,
-        private string $phone,
-        private string $email,
-        private string $address,
-        private string $country
+        private ?string $phone = null,
+        private ?string $email = null,
+        private ?string $address = null,
+        private ?string $country = null
     ){
     }
 
@@ -37,6 +37,14 @@ class Suppliers
     
         if(!empty($this->email)){
             $data['email'] = $this->email;
+        }
+
+        if(!empty($this->address)){
+            $data['address'] = $this->address;
+        }
+
+        if(!empty($this->country)){
+            $data['country'] = $this->country;
         }
         return $data;
     }

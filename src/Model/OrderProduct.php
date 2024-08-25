@@ -4,7 +4,7 @@ declare (strict_types = 1);
 
 namespace Src\Model;
 
-class OrderDetails 
+class OrderProduct 
 {
     public function __construct(
         private int $id,

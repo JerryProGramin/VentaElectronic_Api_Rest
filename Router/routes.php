@@ -8,8 +8,8 @@ use Src\Repository\PaymentMethodsRepository;
 use Src\Controller\PaymentMethodsController;
 use Src\Controller\OrdersController;
 use Src\Repository\OrdersRepository;
-use Src\Repository\OrderDetailsRepository;
-use Src\Controller\OrderDetailsController;
+use Src\Repository\OrderProductRepository;
+use Src\Controller\OrderProductController;
 use Src\Repository\InventoryRepository;
 use Src\Controller\InventoryController;
 use Src\Repository\CategoriesRepository;
@@ -26,26 +26,26 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $suppliersRepository = new SuppliersRepository();
 $suppliersController = new SuppliersController($suppliersRepository);
 
-// $ordersRepository = new OrdersRepository();
-// $ordersController = new OrdersController($ordersRepository);
+$ordersRepository = new OrdersRepository();
+$ordersController = new OrdersController($ordersRepository);
 
-// $OrderDetailsRepository = new OrderDetailsRepository();
-// $OrderDetailsController = new OrderDetailsController($OrderDetailsRepository);
+$OrderProductRepository = new OrderProductRepository();
+$OrderProductController = new OrderProductController($OrderProductRepository);
 
 $usersRepository = new UsersRepository();
 $usersController = new UsersController($usersRepository);
 
-// $paymentMethodsRepository = new PaymentMethodsRepository();
-// $paymentMethodsController = new PaymentMethodsController($paymentMethodsRepository);
+$paymentMethodsRepository = new PaymentMethodsRepository();
+$paymentMethodsController = new PaymentMethodsController($paymentMethodsRepository);
 
-// $inventoryRepository = new InventoryRepository();
-// $inventoryController = new InventoryController($inventoryRepository);
+$inventoryRepository = new InventoryRepository();
+$inventoryController = new InventoryController($inventoryRepository);
 
-// $categoriesRepository = new CategoriesRepository();
-// $categoriesController = new CategoriesController($categoriesRepository);
+$categoriesRepository = new CategoriesRepository();
+$categoriesController = new CategoriesController($categoriesRepository);
 
-// $productsRepository = new ProductsRepository();
-// $productsController = new ProductsController($productsRepository);
+$productsRepository = new ProductsRepository();
+$productsController = new ProductsController($productsRepository);
 
 $profilesRepository = new ProfilesRepository();
 $profilesController = new ProfilesController($profilesRepository);
@@ -66,47 +66,47 @@ return [
       $usersController->showUsers((int)$usersId);
     },
 
-    // 'payment_methods' => function () use ($paymentMethodsController) {
-    //   $paymentMethodsController->indexPaymentMethods();
-    // },
-    // 'payment_methods/{id}' => function ($paymentMethodId) use ($paymentMethodsController) {
-    //   $paymentMethodsController->showPaymentMethods((int)$paymentMethodId);
-    // },
+    'payment_methods' => function () use ($paymentMethodsController) {
+      $paymentMethodsController->indexPaymentMethods();
+    },
+    'payment_methods/{id}' => function ($paymentMethodId) use ($paymentMethodsController) {
+      $paymentMethodsController->showPaymentMethods((int)$paymentMethodId);
+    },
 
-    // 'orders' => function () use ($ordersController) {
-    //   $ordersController->indexOrders();
-    // },
-    // 'orders/{id}' => function ($orderId) use ($ordersController) {
-    //   $ordersController->showOrders((int)$orderId);
-    // },
+    'orders' => function () use ($ordersController) {
+      $ordersController->indexOrders();
+    },
+    'orders/{id}' => function ($orderId) use ($ordersController) {
+      $ordersController->showOrders((int)$orderId);
+    },
 
-    // 'order_details' => function () use ($OrderDetailsController) {
-    //   $OrderDetailsController->indexOrderDetails();
-    // },
-    // 'order_details/{id}' => function ($OrderDetailsId) use ($OrderDetailsController) {
-    //   $OrderDetailsController->showOrderDetails((int)$OrderDetailsId);
-    // },
+    'order_product' => function () use ($OrderProductController) {
+      $OrderProductController->indexOrderProduct();
+    },
+    'order_product/{id}' => function ($OrderProductId) use ($OrderProductController) {
+      $OrderProductController->showOrderProduct((int)$OrderProductId);
+    },
 
-    // 'inventory' => function () use ($inventoryController) {
-    //   $inventoryController->indexInventory();
-    // },
-    // 'inventory/{id}' => function ($inventoryId) use ($inventoryController) {
-    //   $inventoryController->showInventory((int)$inventoryId);
-    // },
+    'inventory' => function () use ($inventoryController) {
+      $inventoryController->indexInventory();
+    },
+    'inventory/{id}' => function ($inventoryId) use ($inventoryController) {
+      $inventoryController->showInventory((int)$inventoryId);
+    },
 
-    // 'categories' => function () use ($categoriesController) {
-    //   $categoriesController->indexCategories();
-    // },
-    // 'categories/{id}' => function ($categoriesId) use ($categoriesController) {
-    //   $categoriesController->showCategories((int)$categoriesId);
-    // },
+    'categories' => function () use ($categoriesController) {
+      $categoriesController->indexCategories();
+    },
+    'categories/{id}' => function ($categoriesId) use ($categoriesController) {
+      $categoriesController->showCategories((int)$categoriesId);
+    },
 
-    // 'products' => function () use ($productsController) {
-    //   $productsController->indexProducts();
-    // },
-    // 'products/{id}' => function ($productsId) use ($productsController) {
-    //   $productsController->showProducts((int)$productsId);
-    // },
+    'products' => function () use ($productsController) {
+      $productsController->indexProducts();
+    },
+    'products/{id}' => function ($productsId) use ($productsController) {
+      $productsController->showProducts((int)$productsId);
+    },
 
     'profiles' => function () use ($profilesController) {
       $profilesController->indexProfiles();

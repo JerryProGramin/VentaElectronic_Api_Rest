@@ -19,28 +19,14 @@ class Products
     }
     public function jsonSerialize(): array
     {
-        $data = [
+        return [
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
+            'price' => $this->price,
+            'stock' => $this->stock,
+            'category_id' => $this->categoryId->jsonSerialize(),
+            'supplier_id' => $this->supplierId->jsonSerialize()
         ];
-            
-        if(!empty($this->price)){
-            $data['price'] = $this->price;
-        }
-
-        if(!empty($this->stock)){
-            $data['stock'] = $this->stock;
-        }
-
-        if(!empty($this->categoryId)){
-            $data['category_id'] = $this->categoryId;
-        }
-
-        if(!empty($this->supplierId)){
-            $data['supplier_id'] = $this->supplierId;
-        }
-
-        return $data;
     }
 }
